@@ -157,6 +157,13 @@ RetroPico currently communicates only over the UART, however the long term goal 
   Example: /IMAGE 10 10 100 100 image_data   (Displays an image at coordinates (10,10) with size 100x100)
   ```
 
+- **Draw PETSCII String**:
+
+  ```plaintext
+  /PETSCII x y color text
+  Example: /PETSCII 50 50 Y HELLO, WORLD!   (Draws the text "HELLO, WORLD!" at coordinates (50,50) in yellow)
+  ```
+
 ### ANSI Escape Codes
 
 - **Cursor Position**:
