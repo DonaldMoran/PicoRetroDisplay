@@ -1009,17 +1009,17 @@ int main() {
     // Test the scroll_map function with different scroll amounts and delay values
     scroll_map(10, 100); // Scroll the map to the left by 10 columns with a delay of 100ms
 
-    // Print all PETSCII characters as a test
-    int x = 0;
-    int y = 100;
-    for (uint8_t c = 0x20; c <= 0x7E; c++) {
-        drawPETSCIIChar(x, y, c, YELLOW);
-        x += 8;
-        if (x >= SCREEN_WIDTH) {
-            x = 0;
-            y += 8;
-        }
-    }
+    ////Testing Print all PETSCII characters as a test
+    //int x = 0;
+    //int y = 100;
+    //for (uint8_t c = 0x20; c <= 0x7E; c++) {
+    //    drawPETSCIIChar(x, y, c, YELLOW);
+    //    x += 8;
+    //    if (x >= SCREEN_WIDTH) {
+    //        x = 0;
+    //        y += 8;
+    //    }
+    //}
 
     while (1) {
         handle_serial_input();
