@@ -60,7 +60,11 @@
  *
  * Display Image:
  * /IMAGE x y width height image_data
- * Example: /IMAGE 10 10 100 100 image_data   (Displays an image at coordinates (10,10) with size 100x100)
+ * Example: /IMAGE 10 10 10 10 RRRRRRRRRRYYYYYYYYYYRRRRRRRRRRYYYYYYYYYYRRRRRRRRRRYYYYYYYYYYRRRRRRRRRRYYYYYYYYYYRRRRRRRRRRYYYYYYYYYY
+ *
+ * Draw PETSCII String:
+ * /PETSCII x y color text
+ * Example: /PETSCII 50 50 Y HELLO, WORLD!   (Draws the text "HELLO, WORLD!" at coordinates (50,50) in yellow)
  *
  * ANSI Escape Codes:
  * 
@@ -99,7 +103,7 @@ extern unsigned short cursor_y, cursor_x;
 extern char textcolor, textbgcolor;
 extern unsigned char textsize;
 
-#define BUFFER_SIZE 40
+#define BUFFER_SIZE 200 // Increase buffer size to handle larger images
 #define SCREEN_WIDTH 640
 #define SCREEN_HEIGHT 480
 #define CHAR_WIDTH 8
@@ -676,12 +680,13 @@ void handle_serial_input() {
                         int x, y, width, height;
                         char image_data[BUFFER_SIZE];
                         sscanf(command + 7, "%d %d %d %d %s", &x, &y, &width, &height, image_data);
-                        // Convert image_data string to actual pixel data
-                        char image[width * height];
-                        for (int i = 0; i < width * height; i++) {
-                            image[i] = image_data[i] - '0'; // Convert char to int
+                        // Ensure the image data length matches the expected size
+                        int expected_length = width * height;
+                        if (strlen(image_data) == expected_length) {
+                            drawImage(x, y, width, height, image_data);
+                        } else {
+                            uart_puts(uart0, "\nInvalid image data length.\n");
                         }
-                        drawImage(x, y, width, height, image);
                     } else if (strncmp(command, "/PETSCII ", 9) == 0) {
                         int x, y;
                         char color_code[20];

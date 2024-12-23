@@ -154,7 +154,7 @@ RetroPico currently communicates only over the UART, however the long term goal 
 
   ```plaintext
   /IMAGE x y width height image_data
-  Example: /IMAGE 10 10 100 100 image_data   (Displays an image at coordinates (10,10) with size 100x100)
+  Example: /IMAGE 10 10 10 10 RRRRRRRRRRYYYYYYYYYYRRRRRRRRRRYYYYYYYYYYRRRRRRRRRRYYYYYYYYYYRRRRRRRRRRYYYYYYYYYYRRRRRRRRRRYYYYYYYYYY
   ```
 
 - **Draw PETSCII String**:
