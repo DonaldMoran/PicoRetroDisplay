@@ -44,8 +44,6 @@ RetroPico is a graphics library for retro computers using the Raspberry Pi Pico.
 
 ### License
 
-This project is licensed under the BSD-3-Clause License.
+This project is licensed under the MIT License.
 
 ---
-
-Feel free to customize this description further to better fit your project's specifics and goals.
