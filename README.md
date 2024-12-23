@@ -6,6 +6,8 @@
 
 RetroPico is a graphics library for retro computers using the Raspberry Pi Pico. It provides functions for drawing shapes, text, and sprites on a VGA display. The library supports PETSCII characters and includes features such as scrolling, image rendering, and ANSI escape code handling.
 
+RetroPico currently communicates only over the UART, however the long term goal will be to use either spi, i2c or 8 bit parallel (preferred) for all except standard serial text.
+
 ### Features
 
 - **Text Rendering**: Supports standard 5x7 and BRL4 fonts.
@@ -122,7 +124,6 @@ RetroPico is a graphics library for retro computers using the Raspberry Pi Pico.
 - **Set Font**:
 
   ```plaintext
-
   /FONT [type]
   Example: /FONT STANDARD   (Sets the font to Standard 5x7)
   Example: /FONT BRL4   (Sets the font to BRL4)
@@ -209,6 +210,27 @@ RetroPico is a graphics library for retro computers using the Raspberry Pi Pico.
 - c - Light Blue
 - m - Pink
 - k - White
+
+### Hardware Connections
+
+- GPIO 16 ---> VGA Hsync 
+- GPIO 17 ---> VGA Vsync 
+- GPIO 18 ---> VGA Green lo-bit --> 470 ohm resistor --> VGA_Green
+- GPIO 19 ---> VGA Green hi_bit --> 330 ohm resistor --> VGA_Green
+- GPIO 20 ---> 330 ohm resistor ---> VGA-Blue 
+- GPIO 21 ---> 330 ohm resistor ---> VGA-Red 
+- RP2040 GND ---> VGA-GND
+
+### Resources Used
+
+- PIO state machines 0, 1, and 2 on PIO instance 0
+- DMA channels obtained by claim mechanism
+- 153.6 kBytes of RAM (for pixel color data)
+
+### Credits
+
+This project is built on top of the work by Hunter Adams and Bruce Land of Cornell University, 
+however they nor the University in no way support, endorse or promote this work.
 
 ### License
 
